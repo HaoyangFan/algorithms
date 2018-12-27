@@ -76,6 +76,21 @@ public class SortingTest {
   }
 
   @Test
+  public void testInsertionSorts() {
+    // Selection sort
+    Integer[] temp;
+    temp = unsorted.clone();
+    InsertionSort.sort(temp);
+    assertTrue("Insertion sort unsorted error. result=" + Arrays.toString(temp), isSorted(temp));
+    temp = sorted.clone();
+    InsertionSort.sort(temp);
+    assertTrue("Insertion sort unsorted error. result=" + Arrays.toString(temp), isSorted(temp));
+    temp = reverse.clone();
+    InsertionSort.sort(temp);
+    assertTrue("Insertion sort unsorted error. result=" + Arrays.toString(temp), isSorted(temp));
+  }
+
+  @Test
   public void testMergeSorts() {
     // Merge sort
     Integer[] temp;
