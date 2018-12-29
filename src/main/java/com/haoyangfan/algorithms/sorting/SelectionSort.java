@@ -25,7 +25,7 @@ package com.haoyangfan.algorithms.sorting;
  * @version 1.0
  * @since 12-26-2018
  */
-public class SelectionSort<T extends Comparable<? super T>> {
+public final class SelectionSort<T extends Comparable<? super T>> {
   /**
    * Hide the constructor.
    */

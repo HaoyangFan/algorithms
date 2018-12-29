@@ -22,7 +22,7 @@ package com.haoyangfan.algorithms.sorting;
  *
  * @param <T> the generic type that must be comparable
  */
-public class InsertionSort<T extends Comparable<? super T>> {
+public final class InsertionSort<T extends Comparable<? super T>> {
   /**
    * Hide the constructor.
    */
@@ -34,10 +34,43 @@ public class InsertionSort<T extends Comparable<? super T>> {
    * element's type using insertion sort.
    * After each pass, the first i elements are sorted in ascending order.
    *
+   * <p>The implementation idea is from CLRS Ch2.1, which shift all elements > current
+   * value rightward and insert current value at proper position. This solution
+   * is slightly faster than the swap-based solution below because I/O is less.
+   *
    * @param unsorted the array to be sorted
    * @param <T>      element type of the array, must be comparable
    */
   public static <T extends Comparable<? super T>> void sort(T[] unsorted) {
+    if (unsorted == null || unsorted.length <= 1) {
+      return;
+    }
+    // from CLRS, the loop invariant:
+    // "At the start of each iteration of the for loop, the subarray A[0 : i-1]
+    // consists of the elements originally in A[0 : i-1] but in sorted order.
+    for (int i = 1; i < unsorted.length; i++) {
+      T v = unsorted[i];  // element which we need to find proper index to insert it
+      int j = i - 1;
+      while (j >= 0 && unsorted[j].compareTo(v) > 0) {
+        unsorted[j + 1] = unsorted[j];
+        j--;
+      }
+      // insert value at the proper position
+      unsorted[j + 1] = v;
+    }
+  }
+
+  /**
+   * Sort the input array in ascending order according to the natural order of
+   * element's type using insertion sort.
+   * After each pass, the first i elements are sorted in ascending order.
+   *
+   * <p>The implementation idea is from Algorithms Part I.
+   *
+   * @param unsorted the array to be sorted
+   * @param <T>      element type of the array, must be comparable
+   */
+  public static <T extends Comparable<? super T>> void sort2(T[] unsorted) {
     if (unsorted == null || unsorted.length <= 1) {
       return;
     }

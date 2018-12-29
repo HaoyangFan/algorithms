@@ -91,6 +91,21 @@ public class SortingTest {
   }
 
   @Test
+  public void testShellSorts() {
+    // Shell sort
+    Integer[] temp;
+    temp = unsorted.clone();
+    ShellSort.sort(temp);
+    assertTrue("Shell sort unsorted error. result=" + Arrays.toString(temp), isSorted(temp));
+    temp = sorted.clone();
+    ShellSort.sort(temp);
+    assertTrue("Shell sort unsorted error. result=" + Arrays.toString(temp), isSorted(temp));
+    temp = reverse.clone();
+    ShellSort.sort(temp);
+    assertTrue("Shell sort unsorted error. result=" + Arrays.toString(temp), isSorted(temp));
+  }
+
+  @Test
   public void testMergeSorts() {
     // Merge sort
     Integer[] temp;
